@@ -76,8 +76,13 @@ class WarehouseRobotEnv(gym.Env):
         # Determine reward and termination
         reward=0
         terminated=False
-        if target_reached:
-            reward=1
+        
+        #if 
+        if target_reached == 2:
+            reward += 2
+
+        if target_reached == 1:
+            reward += 1
             terminated=True
 
         # Construct the observation state: 
@@ -93,7 +98,7 @@ class WarehouseRobotEnv(gym.Env):
             self.render()
 
         # Return observation, reward, terminated, truncated (not used), info
-        return obs, reward, terminated, False, info
+        return obs.astype(np.int32), reward, terminated, False, info
 
     # Gym required function to render environment
     def render(self):
@@ -117,4 +122,5 @@ if __name__=="__main__":
         obs, reward, terminated, _, _ = env.step(rand_action)
 
         if(terminated):
+            print(reward)
             obs = env.reset()[0]

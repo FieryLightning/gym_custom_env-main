@@ -112,7 +112,7 @@ class WarehouseRobot:
         # Set amount of medicine the robot starts with
         self.medicine_amt = 0
 
-    def perform_action(self, robot_action:RobotAction) -> bool:
+    def perform_action(self, robot_action:RobotAction) -> int:
         self.last_action = robot_action
 
         # Move Robot to the next cell
@@ -132,10 +132,13 @@ class WarehouseRobot:
             if self.robot_pos in self.medicine_pos:
                 self.medicine_amt += 1
                 self.medicine_pos.remove(self.robot_pos)
-        print("Medicine:", self.medicine_amt)
+                return 2
+        #print("Medicine:", self.medicine_amt)
 
         # Return true if Robot reaches Target
-        return self.robot_pos == self.target_pos
+        if (self.robot_pos == self.target_pos): 
+            return 1
+        else: return 0
 
     def render(self):
         # Print current state on console

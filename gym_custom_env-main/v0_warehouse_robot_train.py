@@ -39,7 +39,7 @@ def run_q(episodes, is_training=True, render=False):
         if(render):
             print(f'Episode {i}')
 
-        # Reset environment at teh beginning of episode
+        # Reset environment at the beginning of episode
         state = env.reset()[0]
         terminated = False
 
@@ -151,4 +151,10 @@ if __name__ == '__main__':
 
     # Train/test using StableBaseline3
     # train_sb3()
-     test_sb3()
+     #test_sb3()
+
+
+    run_q(10, is_training=True, render=False)
+    run_q(10, is_training=False, render=True)
+
+
